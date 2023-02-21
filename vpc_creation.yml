@@ -121,7 +121,7 @@ Resources:
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", AMI]
       InstanceType: t2.micro
       BlockDeviceMappings:
-        DeviceName: /dev/sdc
+        - DeviceName: /dev/sdc
           Ebs:
 
               VolumeSize: 8
