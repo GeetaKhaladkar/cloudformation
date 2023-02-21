@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: s3 bucket creation
+
+Parameters:
+  BucketName: 
+    Type: String
+    Description: Enter Bucket name
+
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+    S3BUCKETPOLICY:
+        Type: AWS::S3::BucketPolicy
+        Properties:
+          Bucket: !Ref DOC-EXAMPLE-BUCKET
+          PolicyDocument:
+            ID: mypolicy
+            Version: 2012-10-17
+            Statement:
+              - Sid: mypolicydoc
+              - Action:
+                  - 's3:GetObject'            
+                  - 's3:DeleteObject' 
+                  - 's3:ListJobs'
+                Effect: Allow
+                Resource: !sub 'arn:aws:s3:::${S3Bucket}'
+                Principal: !join ['',arn:aws:iam::847093641688:user/GVK_user2]
+                   
