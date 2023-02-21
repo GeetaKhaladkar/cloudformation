@@ -120,6 +120,7 @@ Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
+      KeyName: id_rsa,
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", AMI]
       InstanceType: t2.micro
       SubnetId: !Ref PublicSubnet1
@@ -127,7 +128,7 @@ Resources:
         - !Ref WebServerSecurityGroup
       Tags:
        - Key: Name
-         Value: Demo EC2     
+         Value: Demo1 EC2     
       
 Outputs:
   PublicIp:
