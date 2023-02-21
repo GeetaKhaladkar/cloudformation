@@ -5,10 +5,11 @@ Description:  This template deploys a VPC in either us-east1 or us-west-2, with 
     
 Mappings:
   RegionMap:
-    us-east-1:
-     "AMI": "ami-0742b4e673072066f"
-    us-west-2:
-     "AMI": "ami-0518bb0e75d3619ca"
+    ap-south-1:
+      ami-0e742cca61fb65051
+    us-west-1:
+      ami-00569e54da628d17c 
+    
 
 Resources:
   VPC:
@@ -120,7 +121,7 @@ Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: id_rsa,
+      KeyName: demokey,
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", AMI]
       InstanceType: t2.micro
       SubnetId: !Ref PublicSubnet1
